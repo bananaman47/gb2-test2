@@ -1,0 +1,265 @@
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsmex="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s2="http://xmlns.amgen.com/enterprise/datatypes/AmgenTypes/v2" xmlns:s1="http://xmlns.amgen.com/erp/doctypes/SAPVendor/v1" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.amgen.com/erp/services/SAPVendorClient/V1" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://xmlns.amgen.com/erp/services/SAPVendorClient/V1">
+	<wsdl:types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://xmlns.amgen.com/erp/doctypes/SAPVendor/v1">
+			<s:element name="SAPVendor" type="s1:SAPVendorType"/>
+			<s:complexType name="SAPVendorType">
+				<s:sequence>
+					<s:element maxOccurs="1" minOccurs="0" name="SAPVendorNumber" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="1" name="IsActive" nillable="true" type="s:boolean"/>
+					<s:element maxOccurs="1" minOccurs="0" name="Name" type="s2:FullNameType"/>
+					<s:element maxOccurs="1" minOccurs="0" name="AccountGroup">
+						<s:complexType>
+							<s:simpleContent>
+								<s:extension base="s2:CodeLength4AndDescriptionPairType"/>
+							</s:simpleContent>
+						</s:complexType>
+					</s:element>
+					<s:element maxOccurs="1" minOccurs="0" name="Address" type="s2:AddressType"/>
+					<s:element maxOccurs="1" minOccurs="0" name="PhoneNumber" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="AlternatePhoneNumber" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="PurchaseOrderFaxNumber" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="RemittanceAdviceFaxNumber" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="PurchaseOrderEmail" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="RemittanceAdviceEmail" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="TaxInfo" type="s1:TaxInfoType"/>
+					<s:element maxOccurs="1" minOccurs="0" name="AlternatePayees" type="s1:ArrayOfAlternatePayeeType"/>
+					<s:element maxOccurs="1" minOccurs="0" name="InvoicingParties" type="s1:ArrayOfInvoicingPartyType"/>
+					<s:element maxOccurs="1" minOccurs="0" name="RequestingSystem" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="CanadaPMPRBCategory">
+						<s:complexType>
+							<s:simpleContent>
+								<s:extension base="s2:CodeLength3AndDescriptionPairType"/>
+							</s:simpleContent>
+						</s:complexType>
+					</s:element>
+					<s:element maxOccurs="1" minOccurs="0" name="SAPVendorAmgenCompanyCodes" type="s1:ArrayOfAmgenCompanyType"/>
+					<s:element maxOccurs="1" minOccurs="1" name="ValidFromDate" nillable="true" type="s:date"/>
+					<s:element maxOccurs="1" minOccurs="1" name="ValidToDate" nillable="true" type="s:date"/>
+					<s:element maxOccurs="1" minOccurs="0" name="SAPCustomerNumber" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="1" name="IsBlockedForPosting" nillable="true" type="s:boolean"/>
+					<s:element maxOccurs="1" minOccurs="1" name="IsBlockedForPayment" nillable="true" type="s:boolean"/>
+					<s:element maxOccurs="1" minOccurs="0" name="Administration" type="s2:AdministrationType"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="TaxInfoType">
+				<s:sequence>
+					<s:element maxOccurs="1" minOccurs="0" name="CompanyTaxId" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="SSN" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="TaxCategory" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="TaxJurisdiction" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="TaxFormOnFile" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="TaxRecipientCode" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfAlternatePayeeType">
+				<s:sequence>
+					<s:element maxOccurs="unbounded" minOccurs="0" name="AlternatePayee" type="s1:AlternatePayeeType"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="AlternatePayeeType">
+				<s:attribute name="id" type="s:NMTOKEN"/>
+			</s:complexType>
+			<s:complexType name="ArrayOfInvoicingPartyType">
+				<s:sequence>
+					<s:element maxOccurs="unbounded" minOccurs="0" name="InvoicingParty" type="s1:InvoicingPartyType"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="InvoicingPartyType">
+				<s:attribute name="id" type="s:NMTOKEN"/>
+			</s:complexType>
+			<s:complexType name="ArrayOfAmgenCompanyType">
+				<s:sequence>
+					<s:element maxOccurs="unbounded" minOccurs="0" name="AmgenCompany" type="s1:AmgenCompanyType"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="AmgenCompanyType">
+				<s:sequence>
+					<s:element maxOccurs="1" minOccurs="0" name="Name" type="s1:AmgenCompanyCodeNamePairType"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="AmgenCompanyCodeNamePairType">
+				<s:simpleContent>
+					<s:extension base="s:string">
+						<s:attribute name="code" type="s:NMTOKEN"/>
+					</s:extension>
+				</s:simpleContent>
+			</s:complexType>
+		</s:schema>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://xmlns.amgen.com/erp/services/SAPVendorClient/V1">
+			<s:import namespace="http://xmlns.amgen.com/erp/doctypes/SAPVendor/v1"/>
+			<s:element name="ProcessNewSAPVendor" type="tns:ProcessNewSAPVendorRequestType"/>
+			<s:complexType name="ProcessNewSAPVendorRequestType">
+				<s:sequence>
+					<s:element maxOccurs="1" minOccurs="0" name="MessageId" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" ref="s1:SAPVendor"/>
+				</s:sequence>
+			</s:complexType>
+			<s:element name="ProcessModifySAPVendor" type="tns:ProcessModifySAPVendorRequestType"/>
+			<s:complexType name="ProcessModifySAPVendorRequestType">
+				<s:sequence>
+					<s:element maxOccurs="1" minOccurs="0" name="MessageId" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" ref="s1:SAPVendor"/>
+					<s:element maxOccurs="1" minOccurs="0" name="ORXResults" type="tns:ORXFindResultsType"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ORXFindResultsType">
+				<s:sequence>
+					<s:element maxOccurs="1" minOccurs="0" name="CallStatus" type="tns:CallStatusType"/>
+					<s:element maxOccurs="unbounded" minOccurs="0" name="ORXIdentifier" type="tns:ORXIdentifierType"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="CallStatusType">
+				<s:simpleContent>
+					<s:extension base="s:string">
+						<s:attribute name="statusCode" use="required">
+							<s:simpleType>
+								<s:restriction base="s:string">
+									<s:enumeration value="SUCCESS"/>
+									<s:enumeration value="UNAVAILABLE"/>
+									<s:enumeration value="ERROR"/>
+								</s:restriction>
+							</s:simpleType>
+						</s:attribute>
+					</s:extension>
+				</s:simpleContent>
+			</s:complexType>
+			<s:complexType name="ORXIdentifierType">
+				<s:attribute name="agoid" type="s:string"/>
+				<s:attribute name="agoidIssueDate" type="s:string"/>
+				<s:attribute name="ssname" type="s:string"/>
+				<s:attribute name="ssoid" type="s:string"/>
+				<s:attribute name="created" type="s:string"/>
+				<s:attribute name="createdBy" type="s:string"/>
+				<s:attribute name="modified" type="s:string"/>
+				<s:attribute name="modifiedBy" type="s:string"/>
+				<s:attribute name="active" type="s:boolean" use="required"/>
+			</s:complexType>
+		</s:schema>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://xmlns.amgen.com/enterprise/datatypes/AmgenTypes/v2">
+			<s:complexType name="FullNameType">
+				<s:sequence>
+					<s:element maxOccurs="1" minOccurs="0" name="Title" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="FullName" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="CodeLength4AndDescriptionPairType">
+				<s:simpleContent>
+					<s:extension base="s:string">
+						<s:attribute name="code" type="s:string"/>
+					</s:extension>
+				</s:simpleContent>
+			</s:complexType>
+			<s:complexType name="AddressType">
+				<s:sequence>
+					<s:element maxOccurs="1" minOccurs="0" name="CareOf" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="HouseNumber" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="Line1" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="Apartment" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="Line2" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="Line3" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="POBoxNumber" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="POBoxPostalCode" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="City" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="StateOrRegion" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="PostalCode" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="District" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="CountryCode" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="CountryName" type="s:string"/>
+					<s:element maxOccurs="1" minOccurs="0" name="IsCompanyHouse" nillable="true" type="s:boolean"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="CodeLength3AndDescriptionPairType">
+				<s:simpleContent>
+					<s:extension base="s:string">
+						<s:attribute name="code" type="s:string"/>
+					</s:extension>
+				</s:simpleContent>
+			</s:complexType>
+			<s:complexType name="AdministrationType">
+				<s:sequence>
+					<s:element maxOccurs="1" minOccurs="1" name="LastUpdateDate" type="s:dateTime"/>
+					<s:element maxOccurs="1" minOccurs="0" name="LastUpdatedByWorkforceId" type="s:NMTOKEN"/>
+				</s:sequence>
+			</s:complexType>
+		</s:schema>
+	</wsdl:types>
+	<wsdl:message name="ProcessModifySAPVendorSoapOut"> </wsdl:message>
+	<wsdl:message name="ProcessModifySAPVendorSoapIn">
+		<wsdl:part name="modifySAPVendor" element="tns:ProcessModifySAPVendor"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ProcessNewSAPVendorSoapIn">
+		<wsdl:part name="newSAPVendor" element="tns:ProcessNewSAPVendor"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ProcessNewSAPVendorSoapOut"> </wsdl:message>
+	<wsdl:portType name="SAPVendorEDH">
+		<wsdl:operation name="ProcessNewSAPVendor">
+			<wsdl:input message="tns:ProcessNewSAPVendorSoapIn"> </wsdl:input>
+			<wsdl:output message="tns:ProcessNewSAPVendorSoapOut"> </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ProcessModifySAPVendor">
+			<wsdl:input message="tns:ProcessModifySAPVendorSoapIn"> </wsdl:input>
+			<wsdl:output message="tns:ProcessModifySAPVendorSoapOut"> </wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="SAPVendorClientV1_0SOAP">
+		<wsdl:operation name="ProcessNewSAPVendor">
+			<wsdl:input message="tns:ProcessNewSAPVendorSoapIn"> </wsdl:input>
+			<wsdl:output message="tns:ProcessNewSAPVendorSoapOut"> </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ProcessModifySAPVendor">
+			<wsdl:input message="tns:ProcessModifySAPVendorSoapIn"> </wsdl:input>
+			<wsdl:output message="tns:ProcessModifySAPVendorSoapOut"> </wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SAPVendorClientV1_0SOAP1" type="tns:SAPVendorEDH">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="ProcessNewSAPVendor">
+			<soap12:operation soapAction="http://xmlns.amgen.com/erp/services/SAPVendorClient/V1/ProcessNewSAPVendor" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ProcessModifySAPVendor">
+			<soap12:operation soapAction="http://xmlns.amgen.com/erp/services/SAPVendorClient/V1/ProcessModifySAPVendor" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="SAPVendorClientV1_0SOAP" type="tns:SAPVendorClientV1_0SOAP">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="ProcessNewSAPVendor">
+			<soap:operation soapAction="http://xmlns.amgen.com/erp/services/SAPVendorClient/V1/ProcessNewSAPVendor" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ProcessModifySAPVendor">
+			<soap:operation soapAction="http://xmlns.amgen.com/erp/services/SAPVendorClient/V1/ProcessModifySAPVendor" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SAPVendorEDHSubscriber_vs0">
+		<wsdl:documentation>SAPVendorEDHSubscriber</wsdl:documentation>
+		<wsdl:port name="SAPVendorEDHSubscriber_vs0_http" binding="tns:SAPVendorClientV1_0SOAP">
+			<soap:address location="http://localhost:8091/SAPVendorEDHSubscriber_vs0/SAPVendorEDHSubscriber_vs0_http"/>
+		</wsdl:port>
+		<wsdl:port name="SAPVendorEDHSubscriber_vs0_http1" binding="tns:SAPVendorClientV1_0SOAP1">
+			<soap12:address location="http://localhost:8091/SAPVendorEDHSubscriber_vs0/SAPVendorEDHSubscriber_vs0_http1"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

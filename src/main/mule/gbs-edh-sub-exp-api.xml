@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+<!-- mcommon files -->
+	<import doc:name="mcommon" doc:id="f658c218-424d-4a1e-9f61-69618bdb30cc" file="mcommon.xml" />
+	<import doc:name="amgen-api-common" doc:id="42234a82-8581-45e8-aa15-dc85a6e9f6ca" file="amgen-api-common.xml" />
+	<import doc:name="amgen-api-exception" doc:id="47bddaeb-e5aa-4ea2-bccb-04a93a9ba3c6" file="amgen-api-exception.xml" />
+	<configuration-properties doc:name="mcommonProperties" doc:id="3f1d4a13-0fa9-4d9f-8af2-2ce246d635ab" file="config/mcommon-config.yaml" />
+<!-- mconfig files -->
+	<import doc:name="mconfig" doc:id="88c38e82-da83-4d79-89ce-f999d11022c6" file="mconfig.xml" />
+	<configuration-properties doc:name="mconfigPropertiesConfig" doc:id="0d4fa024-b84a-4080-98c6-c74e6ac6b728" file="config/${env}/runtime-${env}.yaml" />
+	<secure-properties:config name="mconfigSecurePropertiesConfig" doc:name="Secure Properties Config" doc:id="585e7049-ba67-40c4-b0b9-59cc2d28cdbd" file="config/${env}/runtime-secure-${env}.yaml" key="${encryption.key}" >
+		<secure-properties:encrypt algorithm="Blowfish" />
+	</secure-properties:config>
+<!-- gbs-materialbatch-edh-sub-exp-api files -->
+	<configuration-properties doc:name="edhMaterialbatchConfigurationProperties" doc:id="6ccf779d-f946-4d2f-82f8-7aea0d9eac42" file="config/${env}/materialbatch-edh-sub-${env}.yaml" />
+	<import doc:name="edhmaterialbatch-common" doc:id="6853690d-da5b-462f-90d1-870bb9909cff" file="materialbatch-edh-sub-exp-api-common.xml" />
+	<import doc:name="edhmaterialbatch-main" doc:id="bbce7b11-053a-4a79-8c9b-dc9c74686f84" file="materialbatch-edh-sub-exp-api-main.xml" />
+	<import doc:name="edhmaterialbatch-routes" doc:id="886db277-696d-47b9-a6fe-e4317f063d2f" file="materialbatch-edh-sub-exp-api-routes.xml" />
+	
+<!-- gbs-gbs-material-edh-sub-exp-api files -->
+	<configuration-properties doc:name="edhMaterialConfigurationProperties" doc:id="0aa9e164-4a94-4393-bd1a-03453aadeca3" file="config/${env}/material-edh-sub-exp-api-${env}.yaml" />
+	<import doc:name="edhmaterial-common" doc:id="23e8703f-1193-4fd0-8399-8478dae270dc" file="material-edh-sub-exp-api-common.xml" />
+	<import doc:name="edhmaterial-main" doc:id="f8ad732a-85c4-40dc-87ff-28a5f42aaf6d" file="material-edh-sub-exp-api-main.xml" />
+	<import doc:name="edhmaterial-routes" doc:id="3cb65a1b-0b16-4edc-8831-6c0bfe92be05" file="material-edh-sub-exp-api-routes.xml" />
+	
+<!-- gbs-materialprice-edh-sub-exp-api files -->
+	<configuration-properties doc:name="edhMaterialPriceConfigurationProperties" doc:id="7d4377b0-aa42-4ba1-9cce-78933c67d1fb" file="config/${env}/materialprice-edh-sub-${env}.yaml" />
+	<import doc:name="edhmaterialprice-common" doc:id="01d5adb8-d199-450c-a7e8-496bf5524e9a" file="materialprice-edh-sub-exp-api-common.xml" />
+	<import doc:name="edhmaterialprice-main" doc:id="7b6938ee-e7eb-40c4-a50f-06a85621cfa9" file="materialprice-edh-sub-exp-api-main.xml" />
+	<import doc:name="edhmaterialprice-routes" doc:id="4e754ec8-8c54-4ae0-bd1a-92fb55b7f0cb" file="materialprice-edh-sub-exp-api-routes.xml" />
+<!-- gbs-sapcustomer-edh-sub-exp-api files -->
+	<configuration-properties doc:name="edhSapCustomerlConfigurationProperties" doc:id="11d09d51-4d44-4604-8ed7-d72ece231fc9" file="config/${env}/sapcustomer-edh-sub-${env}.yaml" />
+	<import doc:name="edhsapcustomer-common" doc:id="8fae8911-98d9-4fdc-bb3f-ceb89277fe13" file="sapcustomer-edh-sub-exp-api-common.xml" />
+	<import doc:name="edhsapcustomer-main" doc:id="81ca4c2e-259a-4752-8772-39c76a997351" file="sapcustomer-edh-sub-exp-api-main.xml" />
+	<import doc:name="edhsapcustomer-routes" doc:id="fb0449d4-8fb3-4983-b51c-4d3eba6c769a" file="sapcustomer-edh-sub-exp-api-routes.xml" />
+	
+<!-- gbs-sapvendor-edh-sub-exp-api files -->
+	<configuration-properties doc:name="edhSapvendorConfigurationProperties" doc:id="a2a650e2-9c93-43a3-a0bd-9619f025c98f" file="config/${env}/sapvendor-edh-sub-exp-api-${env}.yaml" />
+	<import doc:name="edhspavendor-common" doc:id="a5fe78a7-1251-4580-adb3-b3f0ea5ba7e4" file="sapvendor-edh-sub-exp-api-common.xml" />
+	<import doc:name="edhspavendor-main" doc:id="0b5ec91d-8a30-4689-ba00-f04bf0d26809" file="sapvendor-edh-sub-exp-api-main.xml" />
+	<import doc:name="edhspavendor-routes" doc:id="9d3b16d4-0104-48eb-a050-1fb04dcb7ba6" file="sapvendor-edh-sub-exp-api-routes.xml" />
+</mule>
