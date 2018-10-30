@@ -102,6 +102,7 @@
 					</repository>
 			</distributionManagement>
 		</profile>
+	</profiles>
 
 	<dependencies>
         <dependency>
